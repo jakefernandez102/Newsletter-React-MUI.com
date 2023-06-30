@@ -11,11 +11,15 @@ const CATEGORIES = [
     { value: 'sports', label: 'Sports'},
     { value: 'technology', label: 'Tecnology'},
 ]
-
+const LANGUAGES = [
+    {value:'spa',label:'Spanish'},
+    {value:'eng',label:'English'},
+    {value:'fra',label:'French'}
+]
 
 const Formulario = () => {
 
-    const {category, handleChangeCategory} = useNoticias();
+    const {category, handleChangeCategory,language,handleChangeLanguage} = useNoticias();
 
     return (
     <div>
@@ -26,17 +30,35 @@ const Formulario = () => {
                     label='Category'
                     onChange={handleChangeCategory}
                     value={category}
-                >
+                    sx={{backgroundColor:'white'}}
+                    >
                     {CATEGORIES.map(category=> (
                         <MenuItem
-                            key={category.value}
-                            value={category.value}
+                        key={category.value}
+                        value={category.value}
                         >
                             {category.label}
                         </MenuItem>
                     ))}
                 </Select>
-                
+            </FormControl>
+            <FormControl fullWidth sx={{marginTop:1}}>
+                <InputLabel>Language</InputLabel>
+                <Select
+                    label='Category'
+                    onChange={handleChangeLanguage}
+                    value={language}
+                    sx={{backgroundColor:'white'}}
+                    >
+                    {LANGUAGES.map(language=> (
+                        <MenuItem
+                        key={language.value}
+                        value={language.value}
+                        >
+                            {language.label}
+                        </MenuItem>
+                    ))}
+                </Select>
             </FormControl>
         </form>
     </div>

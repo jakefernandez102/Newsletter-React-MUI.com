@@ -7,7 +7,7 @@ import Noticia from './Noticia';
 
 const ListadoNoticias = () => {
     
-    const {noticias,totalNoticias,handleChangePagina,pagina}=useNoticias()
+    const {noticias,totalNoticias,handleChangePagina,pagina,articlesByLanguage}=useNoticias()
 
     const totalPaginas = Math.ceil(totalNoticias /20);
 
@@ -23,11 +23,19 @@ const ListadoNoticias = () => {
             container
             spacing={2}
         >
-            {noticias.map((noticia)=>(
+            {articlesByLanguage.map((article)=>(
+            //     articleByLanguage?.length === 0
+            // ?
+            //     <Noticia
+            //         key={noticia.uri}
+            //         noticia={noticia}
+            //     />
+            // :
                 <Noticia
-                    key={noticia.url}
-                    noticia={noticia}
+                    key={article.uri}
+                    article={article}
                 />
+
             ))}
             
         </Grid>

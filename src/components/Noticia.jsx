@@ -1,43 +1,68 @@
 /* eslint-disable react/prop-types */
-import { Card, CardActions, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
 
-const Noticia = ({noticia}) => {
+const Noticia = ({ article}) => {
 
-    const {urlToImage,url,title,description,source} =noticia;
+    // const {urlToImage,url,title,description,source} =noticia;
+    const {image,url,title,body,source,time} =article;
 
   return (
     <>
         <Grid
             item
-            xs={1}
+            
             md={6}
             lg={4}
             >
-            <Card>
+            <Card
+                width={'1000%'}
+                sx={{
+                    boxShadow:'-2px 3px 9px .1px gray',
+                    borderLeft:'4px solid lightgray',
+                    borderBottom:'3px solid lightgray',
+                    borderTopLeftRadius:'50px'
+                }}
+            >
                 <CardMedia
                     component='img'
                     alt={`news notice image: ${title}`}
-                    image={urlToImage}
+                    image={image}
                     height={'250'}
                     
                     />
-                <CardContent>
+                <CardContent 
+                   
+                >
+                    <Box
+                        display={'flex'}
+                        justifyContent={'space-between'}
+                        marginBottom={1}
+                    >
                     <Typography
                         variant={'body1'}
                         color={'error'}
                         >
-                        {source?.name}
+                        {source?.title}
                     </Typography>
+                    <Typography
+                        variant={'body1'}
+                        color={'error'}
+                        >
+                        {time}
+                    </Typography>
+                            </Box>
                     <Typography
                         variant={'h5'}
                         component={'div'}
+                        fontWeight={700}
                         >
                         {title}
                     </Typography>
                     <Typography
-                        variant={'body2'}
+                        className={'clamp'}
+                        variant={'p'}
                         >
-                        {description}
+                        {body}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -48,6 +73,8 @@ const Noticia = ({noticia}) => {
                         textAlign={'center'}
                         sx={{textDecoration:'none'}}
                         target={'_blank'}
+                        padding={1}
+                        borderTop={'1px solid black'}
                         >Read New</Link>
                 </CardActions>
             </Card>
